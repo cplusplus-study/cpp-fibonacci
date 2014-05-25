@@ -35,7 +35,7 @@ using namespace Fibimpl;
 template<int N,class = typename std::enable_if<N<=max>::type >
 struct FIB{
     static const long long int value = FIB_impl<N-1>::value + FIB_impl<N-2>::value;
-    static void warmup(){
+    FIB(){
         if(N>cache_max){
             cache_max=N;
         }
@@ -48,6 +48,9 @@ struct FIB{
 long long int get(int n){
     assert(n<=cache_max);
     return cache[n];
+}
+namespace{
+auto dummy = FIB<Fibimpl::max>();
 }
 }
 #endif // FIB_HPP
